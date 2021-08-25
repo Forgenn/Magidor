@@ -9,11 +9,14 @@ import android.transition.Slide
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.data.Game
@@ -21,6 +24,8 @@ import com.example.kotlin.data.Player
 import com.recyclerviewapp.ItemAdapter
 import kotlinx.android.synthetic.main.activity_game_pop_up.*
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import com.google.android.material.snackbar.Snackbar
 
 var popupWindow : PopupWindow = PopupWindow()
 var mainPlayer: Player = Player()
@@ -96,6 +101,11 @@ class MainActivity : AppCompatActivity() {
 
             button_confirm.setOnClickListener {
                 //Afegir item a llista
+                if (result_button.text == "Result"){
+                    Snackbar.make(findViewById(R.id.mainLayout), "Pero a veure, si no fiques el resultat que creus que pasara?", Snackbar.LENGTH_LONG).show()
+                    popupWindow.dismiss()
+                    return@setOnClickListener
+                }
                 val (game_score_one, game_score_two) = result_button.text.split("-")
 
                 var deck1 = view.findViewById(R.id.text_deck1) as EditText

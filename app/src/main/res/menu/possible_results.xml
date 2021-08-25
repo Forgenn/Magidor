@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/two_one"
+        android:title="@string/two_one"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/two_zero"
+        android:title="@string/two_zero"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/zero_two"
+        android:title="@string/zero_two"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/one_two"
+        android:title="@string/one_two"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/one_zero"
+        android:title="@string/one_zero"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/zero_one"
+        android:title="@string/zero_one"
+        app:showAsAction="never"/>
+</menu>

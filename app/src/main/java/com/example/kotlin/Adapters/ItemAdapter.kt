@@ -47,7 +47,7 @@ class ItemAdapter(val context: Context, val items: ArrayList<Game>) :
         holder.tvResult.text = item.game_score.first.toString() + "-" + item.game_score.second.toString()
 
         // Updating the background color according to the odd/even positions in list.
-        if (position % 2 == 0) {
+        if (item.game_score.first  > item.game_score.second) {
             holder.cardViewItem.setBackgroundColor(
                 ContextCompat.getColor(
                     context,
@@ -58,8 +58,8 @@ class ItemAdapter(val context: Context, val items: ArrayList<Game>) :
             holder.cardViewItem.setBackgroundColor(
                 ContextCompat.getColor(
                     context,
-                    R.color.purple_700
-                )
+                    R.color.red
+            )
             )
         }
     }

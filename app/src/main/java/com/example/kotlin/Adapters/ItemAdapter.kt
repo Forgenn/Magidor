@@ -1,4 +1,4 @@
-package com.recyclerviewapp
+/*package com.example.kotlin.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,17 +8,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.kotlin.data.Game
+//import com.example.kotlin.fragments.GamesFragment
 import kotlinx.android.synthetic.main.item_custom_row.view.*
 
-class ItemAdapter(val context: Context, val items: ArrayList<Game>) :
-    RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
+class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
-    /**
-     * Inflates the item views which is designed in xml layout file
-     *
-     * create a new
-     * {@link ViewHolder} and initializes some private fields to be used by RecyclerView.
-     */
+    var mItems = arrayListOf<>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(context).inflate(
@@ -80,4 +75,4 @@ class ItemAdapter(val context: Context, val items: ArrayList<Game>) :
         val tvResult = view.tv_item_result
         val cardViewItem = view.card_view_item
     }
-}
+} */

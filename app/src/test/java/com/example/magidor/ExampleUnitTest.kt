@@ -1,4 +1,4 @@
-package com.example.kotlin
+package com.example.magidor
 
 import org.junit.Test
 

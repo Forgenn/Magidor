@@ -1,15 +1,14 @@
-package com.example.kotlin.Adapters
+package com.example.magidor.Adapters
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.example.kotlin.R
-import com.example.kotlin.data.Game
-import com.example.kotlin.databinding.FragmentItemBinding
+import com.example.magidor.R
+import com.example.magidor.data.Game
+import com.example.magidor.databinding.FragmentItemBinding
 
 
 class ItemRecyclerViewAdapter(

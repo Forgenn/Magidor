@@ -1,4 +1,4 @@
-package com.example.kotlin.Adapters
+package com.example.magidor.Adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

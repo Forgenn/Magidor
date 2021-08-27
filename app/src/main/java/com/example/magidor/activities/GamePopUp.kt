@@ -1,9 +1,8 @@
-package com.example.kotlin
+package com.example.magidor.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.animation.DecelerateInterpolator
-import kotlinx.android.synthetic.main.activity_game_pop_up.*
+import com.example.magidor.R
 
 class GamePopUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

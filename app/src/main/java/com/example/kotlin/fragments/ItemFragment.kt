@@ -4,10 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +12,15 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlin.Adapters.ItemRecyclerViewAdapter
 import com.example.kotlin.R
 import com.example.kotlin.data.Game
 import com.example.kotlin.data.Player
 import com.example.kotlin.popupWindow
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.games_fragment.*
 import kotlinx.android.synthetic.main.games_fragment.view.*
 
@@ -30,13 +28,14 @@ import kotlinx.android.synthetic.main.games_fragment.view.*
  * A fragment representing a list of Items.
  */
 
-var mainPlayer = Player()
+var mainPlayer = Player("MainPlayer")
 class ItemFragment : Fragment() {
 
     private var columnCount = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mainPlayer = readPlayerJson()
     }
 
     override fun onCreateView(
@@ -117,8 +116,9 @@ class ItemFragment : Fragment() {
                     var deck1 = view.findViewById(R.id.text_deck1) as EditText
                     var deck2 = view.findViewById(R.id.text_deck2) as EditText
 
-                    var game = Game(mainPlayer, Pair(game_score_one.toInt(), game_score_two.toInt()), deck1.text.toString(), deck2.text.toString())
+                    var game = Game(Pair(game_score_one.toInt(), game_score_two.toInt()), deck1.text.toString(), deck2.text.toString())
                     mainPlayer.addGame(game)
+                    writePlayerJson()
                     itemAdapter.notifyDataSetChanged()
                     popupWindow.dismiss()
                 }
@@ -135,5 +135,28 @@ class ItemFragment : Fragment() {
 
     private fun getItemsList(): ArrayList<Game> { //This will be json read
         return mainPlayer.games
+    }
+
+    private fun writePlayerJson(){
+        var gson = Gson()
+        var jsonString = gson.toJson(mainPlayer)
+
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        var editor = sharedPref?.edit()
+        editor?.putString("mainPlayer", jsonString)
+        editor?.commit()
+    }
+
+    private fun readPlayerJson(): Player{
+        val gson = Gson()
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        var player = Player("MainPlayer")
+
+        val jsonString: String? = sharedPref?.getString("mainPlayer", "defaultValue")
+        if (jsonString != "defaultValue"){
+            player = gson.fromJson(jsonString, Player::class.java)
+        }
+
+        return player
     }
 }

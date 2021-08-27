@@ -11,10 +11,10 @@ import com.example.magidor.data.Game
 import com.example.magidor.databinding.FragmentItemBinding
 
 
-class ItemRecyclerViewAdapter(
+class MatchItemRecyclerViewAdapter(
     private val context: Context,
     private val values: ArrayList<Game>
-) : RecyclerView.Adapter<ItemRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MatchItemRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 

@@ -3,9 +3,8 @@ package com.example.magidor.activities
 //import com.example.kotlin.fragments.GamesFragment
 import android.content.Context
 import android.os.Bundle
-import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
-import com.example.magidor.fragments.ItemFragment
+import com.example.magidor.fragments.MatchItemFragment
 import com.example.magidor.Adapters.ViewPagerAdapter
 import com.example.magidor.R
 import com.example.magidor.data.Game
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setUpTabs() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(ItemFragment(), "Matches")
+        adapter.addFragment(MatchItemFragment(), "Matches")
         adapter.addFragment(Players(), "Players")
         adapter.addFragment(Players(), "Stats")
         viewPager.adapter = adapter

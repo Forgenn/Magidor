@@ -1,6 +1,5 @@
 package com.example.magidor.fragments
 
-import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -15,13 +14,11 @@ import android.widget.PopupWindow
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.magidor.Adapters.ItemRecyclerViewAdapter
+import com.example.magidor.Adapters.MatchItemRecyclerViewAdapter
 import com.example.magidor.R
 import com.example.magidor.activities.MainActivity
 import com.example.magidor.data.Game
-import com.example.magidor.data.Player
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.games_fragment.*
 import kotlinx.android.synthetic.main.games_fragment.view.*
 
@@ -30,7 +27,7 @@ import kotlinx.android.synthetic.main.games_fragment.view.*
  */
 
 
-class ItemFragment : Fragment() {
+class MatchItemFragment : Fragment() {
 
     private var columnCount = 1
     private var mainActivity = MainActivity()
@@ -51,7 +48,7 @@ class ItemFragment : Fragment() {
         // Set the adapter
         with(view) {
             recycler_view.layoutManager = LinearLayoutManager(activity)
-            val itemAdapter = ItemRecyclerViewAdapter(context, mainActivity.getItemsList())
+            val itemAdapter = MatchItemRecyclerViewAdapter(context, mainActivity.getItemsList())
             recycler_view.adapter = itemAdapter
 
             var popupWindow: PopupWindow

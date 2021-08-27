@@ -25,8 +25,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
             android:layout_width="415dp"
-            android:layout_height="34dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            app:layout_constraintHeight_max="50dp"
+            app:layout_constrainedHeight="true"
             tools:ignore="UseCompoundDrawables">
 
             <TextView
@@ -48,6 +50,7 @@
                 android:id="@+id/tv_item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxWidth="250dp"
                 android:layout_marginStart="44dp"
                 android:layout_marginLeft="44dp"
                 android:baselineAligned="false"

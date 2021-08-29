@@ -4,7 +4,7 @@ package com.example.magidor.activities
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.magidor.fragments.MatchItemFragment
+import com.example.magidor.fragments.Match
 import com.example.magidor.Adapters.ViewPagerAdapter
 import com.example.magidor.R
 import com.example.magidor.data.Game
@@ -12,7 +12,7 @@ import com.example.magidor.data.Player
 import com.example.magidor.fragments.Players
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
-
+import java.lang.reflect.Array
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setUpTabs() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(MatchItemFragment(), "Matches")
+        adapter.addFragment(Match(), "Matches")
         adapter.addFragment(Players(), "Players")
         adapter.addFragment(Players(), "Stats")
         viewPager.adapter = adapter
@@ -64,9 +64,11 @@ class MainActivity : AppCompatActivity() {
         return player
     }
 
-     fun getItemsList(): ArrayList<Game> { //This will be json read
+     fun getMatches(): ArrayList<Game> { //This will be json read
         return mainPlayer.games
     }
+
+
 
 }
 

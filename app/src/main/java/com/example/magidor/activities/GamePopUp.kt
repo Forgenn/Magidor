@@ -8,6 +8,6 @@ class GamePopUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         overridePendingTransition(0, 0)
-        setContentView(R.layout.activity_game_pop_up)
+        setContentView(R.layout.game_add_pop_up)
     }
 }

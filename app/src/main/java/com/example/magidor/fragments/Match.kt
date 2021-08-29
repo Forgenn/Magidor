@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.games_fragment.view.*
  */
 
 
-class MatchItemFragment : Fragment() {
+class Match : Fragment() {
 
     private var columnCount = 1
     private var mainActivity = MainActivity()
@@ -48,7 +48,7 @@ class MatchItemFragment : Fragment() {
         // Set the adapter
         with(view) {
             recycler_view.layoutManager = LinearLayoutManager(activity)
-            val itemAdapter = MatchItemRecyclerViewAdapter(context, mainActivity.getItemsList())
+            val itemAdapter = MatchItemRecyclerViewAdapter(mainActivity, mainActivity.getMatches())
             recycler_view.adapter = itemAdapter
 
             var popupWindow: PopupWindow
@@ -57,7 +57,7 @@ class MatchItemFragment : Fragment() {
             button_add_game.setOnClickListener {
                     val inflater: LayoutInflater =
                         context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                    val view = inflater.inflate(R.layout.activity_game_pop_up, null)
+                    val view = inflater.inflate(R.layout.game_add_pop_up, null)
 
                     popupWindow = PopupWindow(
                         view,

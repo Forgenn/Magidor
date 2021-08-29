@@ -1,3 +1,3 @@
 package com.example.magidor.data
 
-data class Game(val game_score: Pair<Int, Int>, val deck_one: String, val deck_two: String)
+data class Game(val game_score: Pair<Int, Int>, val deck_one: String, val deck_two: String, val player_play: Boolean)

@@ -7,10 +7,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.PopupWindow
+import android.widget.*
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +16,7 @@ import com.example.magidor.R
 import com.example.magidor.activities.MainActivity
 import com.example.magidor.data.Game
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.game_add_pop_up.view.*
 import kotlinx.android.synthetic.main.games_fragment.*
 import kotlinx.android.synthetic.main.games_fragment.view.*
 
@@ -29,7 +27,6 @@ import kotlinx.android.synthetic.main.games_fragment.view.*
 
 class Match : Fragment() {
 
-    private var columnCount = 1
     private var mainActivity = MainActivity()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +71,7 @@ class Match : Fragment() {
                     popupWindow.isOutsideTouchable = true
 
                     popupWindow.showAtLocation(
-                        game_popup, // Location to display popup window
+                        player_popup, // Location to display popup window
                         Gravity.CENTER, // Exact position of layout to display popup
                         0, // X offset
                         0 // Y offset
@@ -86,7 +83,7 @@ class Match : Fragment() {
 
                     result_button.setOnClickListener {
                         val popupMenu: PopupMenu = PopupMenu(view.context, result_button)
-                        popupMenu.menuInflater.inflate(R.menu.possible_results, popupMenu.menu)
+                        popupMenu.menuInflater.inflate(R.menu.possible_match_results, popupMenu.menu)
 
                         popupMenu.setOnMenuItemClickListener { item ->
                             when (item.itemId) {
@@ -102,7 +99,6 @@ class Match : Fragment() {
                                     result_button.text = item.title
                                 R.id.zero_one ->
                                     result_button.text = item.title
-
                             }
                             true
                         }
@@ -125,10 +121,13 @@ class Match : Fragment() {
                         var deck1 = view.findViewById(R.id.text_deck1) as EditText
                         var deck2 = view.findViewById(R.id.text_deck2) as EditText
 
+                        var playOrDrawSwitch = view.findViewById(R.id.play_or_draw_switch) as Switch
+
                         var game = Game(
                             Pair(game_score_one.toInt(), game_score_two.toInt()),
                             deck1.text.toString(),
-                            deck2.text.toString()
+                            deck2.text.toString(),
+                            !playOrDrawSwitch.isChecked
                         )
                         mainActivity.mainPlayer.addGame(game)
                         mainActivity.writePlayerJson()

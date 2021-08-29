@@ -34,8 +34,10 @@ class MatchItemRecyclerViewAdapter(
         val item = matches[position]
 
         holder.cardViewItem.setOnLongClickListener{ deleteItem(position)}
-        holder.tvItem.text = item.deck_one + " vs " + item.deck_two
-        holder.tvResult.text = item.game_score.first.toString() + "-" + item.game_score.second.toString()
+        holder.tvFirstDeck.text = item.deck_one
+        holder.tvSecondDeck.text = item.deck_two
+        holder.tvResult.text = context.getString(R.string.result_match, item.game_score.first, item.game_score.second)
+        holder.tvItemDrawOrPlay.text = if (item.player_play) "Play" else "Draw"
 
         // Updating the background color according to the odd/even positions in list.
 
@@ -67,9 +69,11 @@ class MatchItemRecyclerViewAdapter(
     override fun getItemCount(): Int = matches.size
 
     inner class ViewHolder(binding: GameItemRowBinding) : RecyclerView.ViewHolder(binding.root) {
-        val tvItem: TextView = binding.tvItemName
+        val tvFirstDeck: TextView = binding.tvFirstDeck
+        val tvSecondDeck: TextView = binding.tvSecondDeck
         val tvResult: TextView = binding.tvItemResult
         val cardViewItem = binding.cardViewItem
+        val tvItemDrawOrPlay = binding.tvItemPlayOrDraw
 
         override fun toString(): String {
             return super.toString()

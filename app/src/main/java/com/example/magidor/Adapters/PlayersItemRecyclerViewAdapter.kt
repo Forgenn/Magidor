@@ -36,7 +36,7 @@ class PlayersItemRecyclerViewAdapter(
         if (position == 0){
             player = mainPlayer
         } else if (opponents.isNotEmpty()) {
-            player = opponents[position]
+            player = opponents[position - 1]
         }
 
         holder.playerName.text = player.name

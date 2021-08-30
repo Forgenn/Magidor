@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/player_popup"
+        android:id="@+id/game_popup"
         android:layout_width="352dp"
         android:layout_height="253dp"
         android:background="@color/white"

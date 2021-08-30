@@ -71,7 +71,7 @@ class Match : Fragment() {
                     popupWindow.isOutsideTouchable = true
 
                     popupWindow.showAtLocation(
-                        player_popup, // Location to display popup window
+                        game_popup, // Location to display popup window
                         Gravity.CENTER, // Exact position of layout to display popup
                         0, // X offset
                         0 // Y offset
@@ -129,7 +129,7 @@ class Match : Fragment() {
                             deck2.text.toString(),
                             !playOrDrawSwitch.isChecked
                         )
-                        mainActivity.mainPlayer.addGame(game)
+                        mainActivity.addMatchMainPlayer(game)
                         mainActivity.writePlayerJson()
                         itemAdapter.notifyDataSetChanged()
                         popupWindow.dismiss()

@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:id="@+id/player_popup"
-        android:layout_width="352dp"
-        android:layout_height="253dp"
+        android:layout_width="394dp"
+        android:layout_height="713dp"
         android:background="@color/white"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"

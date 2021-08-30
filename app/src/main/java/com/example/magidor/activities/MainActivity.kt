@@ -11,13 +11,14 @@ import com.example.magidor.data.Game
 import com.example.magidor.data.Player
 import com.example.magidor.fragments.Players
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.reflect.Array
 
 
 class MainActivity : AppCompatActivity() {
 
-    var mainPlayer: Player = Player()
+    var mainPlayer: Player = Player("Me")
     var opponents = arrayListOf<Player>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mainPlayer = readPlayerJson()
+        opponents = readOpponentsJson()
 
         setUpTabs()
     }
@@ -43,32 +45,59 @@ class MainActivity : AppCompatActivity() {
 
     fun writePlayerJson(){
         var gson = Gson()
-        var jsonString = gson.toJson(mainPlayer)
+        var jsonMainPLayer = gson.toJson(mainPlayer)
+        var jsonOpponents = gson.toJson(opponents)
+
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         var editor = sharedPref?.edit()
-        editor?.putString("mainPlayer", jsonString)
+        editor?.putString("mainPlayer", jsonMainPLayer)
+        editor?.putString("opponents", jsonOpponents)
         editor?.apply()
     }
 
     fun readPlayerJson(): Player{
         val gson = Gson()
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
-        var player = Player("MainPlayer")
+        var player = Player("Me")
 
-        val jsonString: String? = sharedPref?.getString("mainPlayer", "defaultValue")
-        if (jsonString != "defaultValue"){
-            player = gson.fromJson(jsonString, Player::class.java)
+        val jsonMainPLayer: String? = sharedPref?.getString("mainPlayer", "defaultValue")
+
+        if (jsonMainPLayer != "defaultValue"){
+            player = gson.fromJson(jsonMainPLayer, Player::class.java)
         }
 
         return player
+    }
+
+    fun readOpponentsJson(): ArrayList<Player>{
+        val gson = Gson()
+        val sharedPref = getPreferences(Context.MODE_PRIVATE)
+
+        var opponents = arrayListOf<Player>()
+
+        val jsonOpponents: String? = sharedPref?.getString("opponents", "defaultValue")
+
+        val itemType = object : TypeToken<ArrayList<Player>>() {}.type
+
+        if (jsonOpponents != "defaultValue"){
+            opponents = gson.fromJson(jsonOpponents, itemType)
+        }
+
+        return opponents
+
     }
 
      fun getMatches(): ArrayList<Game> { //This will be json read
         return mainPlayer.games
     }
 
+    fun addMatchMainPlayer(game: Game){
+        mainPlayer.addGame(game)
+    }
 
-
+    fun addOpponent(opponent: Player){
+        opponents.add(opponent)
+    }
 }
 

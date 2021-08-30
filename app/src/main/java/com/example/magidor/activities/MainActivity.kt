@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.magidor.fragments.Match
 import com.example.magidor.Adapters.ViewPagerAdapter
 import com.example.magidor.R
+import com.example.magidor.data.Deck
 import com.example.magidor.data.Game
 import com.example.magidor.data.Player
 import com.example.magidor.fragments.Players
@@ -85,7 +86,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         return opponents
-
     }
 
      fun getMatches(): ArrayList<Game> { //This will be json read
@@ -98,6 +98,16 @@ class MainActivity : AppCompatActivity() {
 
     fun addOpponent(opponent: Player){
         opponents.add(opponent)
+    }
+
+    fun getOpponentsDecks() : ArrayList<ArrayList<Deck>>{
+        var opponentDecks : ArrayList<ArrayList<Deck>> = arrayListOf()
+
+        opponentDecks
+        for (opponent in opponents){
+            opponentDecks.add(opponent.decks)
+        }
+        return opponentDecks
     }
 }
 

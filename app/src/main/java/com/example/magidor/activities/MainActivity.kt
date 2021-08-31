@@ -45,13 +45,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun writePlayerJson(){
-        var gson = Gson()
-        var jsonMainPLayer = gson.toJson(mainPlayer)
-        var jsonOpponents = gson.toJson(opponents)
+        val gson = Gson()
+        val jsonMainPLayer = gson.toJson(mainPlayer)
+        val jsonOpponents = gson.toJson(opponents)
 
 
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
-        var editor = sharedPref?.edit()
+        val editor = sharedPref?.edit()
         editor?.putString("mainPlayer", jsonMainPLayer)
         editor?.putString("opponents", jsonOpponents)
         editor?.apply()
@@ -96,14 +96,49 @@ class MainActivity : AppCompatActivity() {
         mainPlayer.addGame(game)
     }
 
+    fun addMatchOpponent(name: String, game: Game){
+        val opponent: Player? = opponents.find { it.name == name }
+        opponent!!.addGame(game)
+    }
+
     fun addOpponent(opponent: Player){
         opponents.add(opponent)
     }
 
-    fun getOpponentsDecks() : ArrayList<ArrayList<Deck>>{
-        var opponentDecks : ArrayList<ArrayList<Deck>> = arrayListOf()
+    fun getPossiblePlayersNames() : ArrayList<String>{
+        val possibleOpponents = arrayListOf<String>()
+        for (opponent in opponents){
+            possibleOpponents.add(opponent.name)
+        }
+        return possibleOpponents
+    }
 
-        opponentDecks
+    fun getPossibleMainPlayerDecks() : ArrayList<String>{
+        val possibleDecks = arrayListOf<String>()
+        for (mainDeck in mainPlayer.decks){
+            possibleDecks.add(mainDeck.name)
+        }
+        return possibleDecks
+    }
+
+    fun getPossibleOpponentsDecks() : ArrayList<String>{
+        val possibleDecks = arrayListOf<String>()
+        opponents.forEach{it.decks.forEach { deck -> possibleDecks.add(deck.name) }}
+        return possibleDecks
+    }
+
+    fun opponentHasDeck(playerName: String, deckName: String): Boolean{
+        val hasDeck = opponents.find { it.name == playerName }?.decks?.find { it.name == deckName }
+        return hasDeck != null
+    }
+
+    fun mainPlayerHasDeck(deckName: String): Boolean{
+        val hasDeck = mainPlayer.decks.find { it.name == deckName }
+        return hasDeck != null
+    }
+
+    fun getOpponentsDecks() : ArrayList<ArrayList<Deck>>{
+        val opponentDecks : ArrayList<ArrayList<Deck>> = arrayListOf()
         for (opponent in opponents){
             opponentDecks.add(opponent.decks)
         }

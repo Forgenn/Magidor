@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
@@ -14,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.magidor.Adapters.MatchItemRecyclerViewAdapter
 import com.example.magidor.R
 import com.example.magidor.activities.MainActivity
+import com.example.magidor.data.Deck
 import com.example.magidor.data.Game
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.switchmaterial.SwitchMaterial
 import kotlinx.android.synthetic.main.game_add_pop_up.view.*
 import kotlinx.android.synthetic.main.games_fragment.*
 import kotlinx.android.synthetic.main.games_fragment.view.*
@@ -77,9 +80,24 @@ class Match : Fragment() {
                         0 // Y offset
                     )
 
-                    var result_button = view.findViewById(R.id.button_add_deck_inner) as Button
-                    var button_confirm = view.findViewById(R.id.button_confirm) as Button
-                    var button_cancel = view.findViewById(R.id.button_cancel) as Button
+                    val result_button = view.findViewById(R.id.button_add_deck_inner) as Button
+                    val button_confirm = view.findViewById(R.id.button_confirm) as Button
+                    val button_cancel = view.findViewById(R.id.button_cancel) as Button
+
+
+                    //Autocomplete text views declarations
+                    val autocompleteTextViewOpponent = view.findViewById(R.id.autocomplete_opponent) as AutoCompleteTextView
+                    val possibleOpponents : ArrayList<String> = mainActivity.getPossiblePlayersNames()
+                    autocompleteTextViewOpponent.setAdapter(ArrayAdapter(mainActivity, android.R.layout.simple_list_item_1, possibleOpponents))
+
+                    val autoTextDeck1 = view.findViewById(R.id.text_deck1) as AutoCompleteTextView
+                    val possibleMainPlayerDecks : ArrayList<String> = mainActivity.getPossibleMainPlayerDecks()
+                    autoTextDeck1.setAdapter(ArrayAdapter(mainActivity, android.R.layout.simple_list_item_1, possibleMainPlayerDecks))
+
+                    val autoTextDeck2 = view.findViewById(R.id.text_deck2) as AutoCompleteTextView
+                    val possibleOpponentsDecks : ArrayList<String> = mainActivity.getPossibleOpponentsDecks()
+                    autoTextDeck2.setAdapter(ArrayAdapter(mainActivity, android.R.layout.simple_list_item_1, possibleOpponentsDecks))
+
 
                     result_button.setOnClickListener {
                         val popupMenu: PopupMenu = PopupMenu(view.context, result_button)
@@ -87,18 +105,7 @@ class Match : Fragment() {
 
                         popupMenu.setOnMenuItemClickListener { item ->
                             when (item.itemId) {
-                                R.id.two_one ->
-                                    result_button.text = item.title
-                                R.id.two_zero ->
-                                    result_button.text = item.title
-                                R.id.zero_two ->
-                                    result_button.text = item.title
-                                R.id.one_two ->
-                                    result_button.text = item.title
-                                R.id.one_zero ->
-                                    result_button.text = item.title
-                                R.id.zero_one ->
-                                    result_button.text = item.title
+                                else -> result_button.text = item.title
                             }
                             true
                         }
@@ -106,29 +113,72 @@ class Match : Fragment() {
                     }
 
                     button_confirm.setOnClickListener {
-                        //Afegir item a llista
+                        //There has to be a better way to handle this
                         if (result_button.text == "Result") {
                             Snackbar.make(
                                 findViewById(R.id.mainLayout),
-                                "Pero a veure, si no fiques el resultat que creus que pasara?",
+                                "You have to input the result of the match",
                                 Snackbar.LENGTH_LONG
                             ).show()
                             popupWindow.dismiss()
+                            view.hideKeyboard()
                             return@setOnClickListener
                         }
+
+                        val playerName = autocompleteTextViewOpponent.text.toString()
+                        val deck1Name = autoTextDeck1.text.toString()
+                        val deck2Name = autoTextDeck2.text.toString()
+
+                        if (playerName !in possibleOpponents){
+                            Snackbar.make(
+                                findViewById(R.id.mainLayout),
+                                "No player with that name found",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                            view.hideKeyboard()
+                            return@setOnClickListener
+                        }
+
+                        if (deck1Name !in possibleMainPlayerDecks) {
+                            Snackbar.make(
+                                findViewById(R.id.mainLayout),
+                                "You don't have that deck, add it in the Players tab",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                            view.hideKeyboard()
+                            return@setOnClickListener
+                        }
+
+                        if (!mainActivity.opponentHasDeck(playerName, deck2Name)){
+                            Snackbar.make(
+                                findViewById(R.id.mainLayout),
+                                "The opponent doesn't have that deck, add it in the Players tab",
+                                Snackbar.LENGTH_LONG
+                            ).show()
+                            view.hideKeyboard()
+                            return@setOnClickListener
+                        }
+
+
                         val (game_score_one, game_score_two) = result_button.text.split("-")
 
-                        var deck1 = view.findViewById(R.id.text_deck1) as EditText
-                        var deck2 = view.findViewById(R.id.text_deck2) as EditText
+                        val playOrDrawSwitch = view.findViewById(R.id.play_or_draw_switch) as SwitchMaterial
 
-                        var playOrDrawSwitch = view.findViewById(R.id.play_or_draw_switch) as Switch
-
-                        var game = Game(
+                        val game = Game(
                             Pair(game_score_one.toInt(), game_score_two.toInt()),
-                            deck1.text.toString(),
-                            deck2.text.toString(),
+                            Deck(deck1Name),
+                            Deck(deck2Name),
                             !playOrDrawSwitch.isChecked
                         )
+                        //Set match in reverse for opponent
+                        val gameOpponent = Game(
+                            Pair(game_score_two.toInt(), game_score_one.toInt()),
+                            Deck(deck2Name),
+                            Deck(deck1Name),
+                            playOrDrawSwitch.isChecked
+                        )
+
+                        mainActivity.addMatchOpponent(autocompleteTextViewOpponent.text.toString(), gameOpponent)
                         mainActivity.addMatchMainPlayer(game)
                         mainActivity.writePlayerJson()
                         itemAdapter.notifyDataSetChanged()
@@ -142,5 +192,10 @@ class Match : Fragment() {
         }
 
         return view
+    }
+
+    private fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
     }
 }

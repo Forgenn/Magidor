@@ -34,8 +34,8 @@ class MatchItemRecyclerViewAdapter(
         val item = matches[position]
 
         holder.cardViewItem.setOnLongClickListener{ deleteItem(position)}
-        holder.tvFirstDeck.text = item.deck_one
-        holder.tvSecondDeck.text = item.deck_two
+        holder.tvFirstDeck.text = item.deck_one.toString()
+        holder.tvSecondDeck.text = item.deck_two.toString()
         holder.tvResult.text = context.getString(R.string.result_match, item.game_score.first, item.game_score.second)
         holder.tvItemDrawOrPlay.text = if (item.player_play) "Play" else "Draw"
 

@@ -77,7 +77,7 @@ class Match : Fragment() {
                         0 // Y offset
                     )
 
-                    var result_button = view.findViewById(R.id.result_button) as Button
+                    var result_button = view.findViewById(R.id.button_add_deck_inner) as Button
                     var button_confirm = view.findViewById(R.id.button_confirm) as Button
                     var button_cancel = view.findViewById(R.id.button_cancel) as Button
 

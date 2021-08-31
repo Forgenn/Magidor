@@ -81,8 +81,8 @@ class PlayersItemRecyclerViewAdapter(
             ).show()
         } else if (opponents.isNotEmpty()) {
             opponents.removeAt(position - 1)
-            notifyItemRemoved(position - 1)
-            notifyItemRangeChanged(position - 1, itemCount)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, itemCount)
             context.writePlayerJson()
         }
         return true

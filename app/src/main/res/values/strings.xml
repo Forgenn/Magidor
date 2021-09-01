@@ -8,4 +8,14 @@
     <string name="zero_one">0-1</string>
     <string name="result_match">%1$d-%2$d</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="opp_deck">Opp. deck</string>
+    <string name="play">Play</string>
+    <string name="add_a_new_match">Add a new match</string>
+    <string name="draw">Draw</string>
+    <string name="vs">vs</string>
+    <string name="your_deck">Your deck</string>
+    <string name="result">Result</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="opponent">Opponent</string>
 </resources>

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.widget.PopupMenu
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.magidor.Adapters.MatchItemRecyclerViewAdapter
@@ -92,7 +93,7 @@ class Match : Fragment() {
 
                     val autoTextDeck1 = view.findViewById(R.id.text_deck1) as AutoCompleteTextView
                     val possibleMainPlayerDecks : ArrayList<String> = mainActivity.getPossibleMainPlayerDecks()
-                    autoTextDeck1.setAdapter(ArrayAdapter(mainActivity, android.R.layout.simple_list_item_1, possibleMainPlayerDecks))
+                    autoTextDeck1.setAdapter(ArrayAdapter(context, android.R.layout.simple_list_item_1, possibleMainPlayerDecks))
 
                     val autoTextDeck2 = view.findViewById(R.id.text_deck2) as AutoCompleteTextView
                     val possibleOpponentsDecks : ArrayList<String> = mainActivity.getPossibleOpponentsDecks()

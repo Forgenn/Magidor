@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="#703FE3"
             app:tabIconTint="@color/purple_500"
-            app:tabMode="fixed"></com.google.android.material.tabs.TabLayout>
+            app:tabMode="fixed" />
 
 </com.google.android.material.appbar.AppBarLayout>
 

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
 
     <androidx.cardview.widget.CardView
@@ -18,39 +17,25 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
-            android:layout_width="407dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
             tools:ignore="UseCompoundDrawables">
 
             <TextView
-                android:id="@+id/tv_player_name7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="204dp"
-                android:layout_marginLeft="204dp"
-                android:baselineAligned="false"
-                android:text="Game winrate:"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.36" />
-
-            <TextView
                 android:id="@+id/tv_player_name11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="224dp"
-                android:layout_marginLeft="224dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginLeft="220dp"
                 android:baselineAligned="false"
-                android:text="Games lost:"
+                android:text="@string/games_lost"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/games_lost_textview"
+                app:layout_constraintHorizontal_bias="0.531"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.917" />
@@ -59,58 +44,63 @@
                 android:id="@+id/tv_player_name8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="202dp"
-                android:layout_marginLeft="202dp"
+                android:layout_marginStart="216dp"
+                android:layout_marginLeft="216dp"
                 android:baselineAligned="false"
-                android:text="Games played:"
+                android:text="@string/games_played"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.551" />
+                app:layout_constraintVertical_bias="0.541" />
+
+            <TextView
+                android:id="@+id/tv_player_name5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="72dp"
+                android:layout_marginRight="72dp"
+                android:baselineAligned="false"
+                android:text="@string/games_played"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.36"
+                tools:text="Games winrate:" />
 
             <TextView
                 android:id="@+id/tv_player_name9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="221dp"
-                android:layout_marginLeft="221dp"
+                android:layout_marginStart="220dp"
+                android:layout_marginLeft="220dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginRight="1dp"
                 android:baselineAligned="false"
-                android:text="Games won:"
+                android:text="@string/games_won"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/games_won_textview"
+                app:layout_constraintHorizontal_bias="0.517"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.737" />
+                app:layout_constraintVertical_bias="0.729" />
 
             <TextView
                 android:id="@+id/matches_lost_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="152dp"
-                android:layout_marginLeft="152dp"
+                android:layout_marginStart="148dp"
+                android:layout_marginLeft="148dp"
                 android:baselineAligned="false"
-                android:text="100"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.932" />
-
-            <TextView
-                android:id="@+id/games_lost_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="332dp"
-                android:layout_marginLeft="332dp"
-                android:baselineAligned="false"
-                android:text="100"
+                android:text="@string/_100"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -120,12 +110,28 @@
                 app:layout_constraintVertical_bias="0.917" />
 
             <TextView
+                android:id="@+id/games_lost_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="348dp"
+                android:layout_marginLeft="348dp"
+                android:baselineAligned="false"
+                android:text="@string/_100"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.902" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:baselineAligned="false"
-                android:text="Overall Stats"
+                android:text="@string/overall_stats"
                 android:textColor="@android:color/black"
                 android:textSize="23sp"
                 android:textStyle="bold"
@@ -135,45 +141,29 @@
                 app:layout_constraintVertical_bias="0.02" />
 
             <TextView
-                android:id="@+id/tv_player_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:baselineAligned="false"
-                android:text="Match winrate:"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.371" />
-
-            <TextView
                 android:id="@+id/match_winrate_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="152dp"
-                android:layout_marginLeft="152dp"
+                android:layout_marginStart="148dp"
+                android:layout_marginLeft="148dp"
                 android:baselineAligned="false"
-                android:text="50%"
+                android:text="50.1%"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.368" />
+                app:layout_constraintVertical_bias="0.36" />
 
             <TextView
                 android:id="@+id/games_winrate_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="332dp"
-                android:layout_marginLeft="332dp"
+                android:layout_marginStart="348dp"
+                android:layout_marginLeft="348dp"
                 android:baselineAligned="false"
-                android:text="50%"
+                android:text="60.0%"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -186,8 +176,8 @@
                 android:id="@+id/matches_played_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="152dp"
-                android:layout_marginLeft="152dp"
+                android:layout_marginStart="148dp"
+                android:layout_marginLeft="148dp"
                 android:baselineAligned="false"
                 android:text="100"
                 android:textColor="@android:color/black"
@@ -196,14 +186,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.548" />
+                app:layout_constraintVertical_bias="0.541" />
 
             <TextView
                 android:id="@+id/games_played_textview2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="332dp"
-                android:layout_marginLeft="332dp"
+                android:layout_marginStart="348dp"
+                android:layout_marginLeft="348dp"
                 android:baselineAligned="false"
                 android:text="100"
                 android:textColor="@android:color/black"
@@ -212,14 +202,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.551" />
+                app:layout_constraintVertical_bias="0.541" />
 
             <TextView
                 android:id="@+id/matches_won_textview"
                 android:layout_width="wrap_content"
-                android:layout_height="26dp"
-                android:layout_marginStart="152dp"
-                android:layout_marginLeft="152dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="148dp"
+                android:layout_marginLeft="148dp"
                 android:baselineAligned="false"
                 android:text="100"
                 android:textColor="@android:color/black"
@@ -228,14 +218,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.748" />
+                app:layout_constraintVertical_bias="0.736" />
 
             <TextView
                 android:id="@+id/games_won_textview"
                 android:layout_width="wrap_content"
-                android:layout_height="26dp"
-                android:layout_marginStart="332dp"
-                android:layout_marginLeft="332dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="348dp"
+                android:layout_marginLeft="348dp"
                 android:baselineAligned="false"
                 android:text="100"
                 android:textColor="@android:color/black"
@@ -244,14 +234,43 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.744" />
+                app:layout_constraintVertical_bias="0.721" />
+
+            <TextView
+                android:id="@+id/tv_player_name4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:baselineAligned="false"
+                android:text="Matches played:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_player_name2"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:baselineAligned="false"
+                android:text="@string/match_winrate"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.375" />
 
             <TextView
                 android:id="@+id/tv_player_name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:baselineAligned="false"
                 android:text="Matches won:"
                 android:textColor="@android:color/black"
@@ -260,40 +279,22 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.737" />
+                app:layout_constraintVertical_bias="0.736" />
 
             <TextView
                 android:id="@+id/tv_player_name3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginLeft="22dp"
                 android:baselineAligned="false"
                 android:text="Matches lost:"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/matches_lost_textview"
-                app:layout_constraintHorizontal_bias="0.813"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_player_name2"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/tv_player_name4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="24dp"
-                android:baselineAligned="false"
-                android:text="Matches played:"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_player_name2"
-                app:layout_constraintEnd_toStartOf="@+id/matches_played_textview"
-                app:layout_constraintHorizontal_bias="0.6"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_player_name"
                 app:layout_constraintVertical_bias="0.0" />
 
 

@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_magi"
         android:label="Magidor"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_magi_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kotlin" >
         <activity android:name="com.example.magidor.activities.GamePopUp" >

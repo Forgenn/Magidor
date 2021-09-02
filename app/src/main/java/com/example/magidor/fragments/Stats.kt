@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.magidor.Adapters.StatsItemRecyclerViewAdapter
 import com.example.magidor.R
 import com.example.magidor.activities.MainActivity
 import com.example.magidor.data.Stat
@@ -30,8 +32,8 @@ class Stats : Fragment() {
         val view =  inflater.inflate(R.layout.stats_fragment, container, false)
 
         with (view){
+            //Set overall stats
             val mainPlayerStats: Stat = mainActivity.getMainPlayerStats()
-
 
             match_winrate_textview.text = "%.1f".format(mainPlayerStats.match_winrate) + "%"
             matches_played_textview.text = (mainPlayerStats.matches_won + mainPlayerStats.matches_lost).toString()
@@ -42,6 +44,12 @@ class Stats : Fragment() {
             games_played_textview2.text = (mainPlayerStats.games_won + mainPlayerStats.games_lost).toString()
             games_won_textview.text = mainPlayerStats.games_won.toString()
             games_lost_textview.text = mainPlayerStats.games_lost.toString()
+
+            //Set stats per deck
+            recycler_view_stats.layoutManager = LinearLayoutManager(activity)
+            val itemAdapterDeck = StatsItemRecyclerViewAdapter(mainActivity, mainActivity.getPossibleMainPlayerDecks())
+            recycler_view_stats.adapter = itemAdapterDeck
+
 
         }
         return view

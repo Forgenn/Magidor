@@ -105,7 +105,4 @@ class PlayersItemRecyclerViewAdapter(
             return super.toString()
         }
     }
-
-
-
 }

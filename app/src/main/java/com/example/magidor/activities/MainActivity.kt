@@ -172,5 +172,35 @@ class MainActivity : AppCompatActivity() {
 
         return Stat(matchWinrate * 100, matchesWon, matchesLost, gameWinrate * 100, gamesWon, gamesLost)
     }
+
+    fun getMainPlayerDeckStats(name: String): Stat {
+        var matchWinrate: Float = 0F
+        var matchesWon: Int = 0
+        var matchesLost: Int = 0
+        var gameWinrate: Float = 0F
+        var gamesWon: Int = 0
+        var gamesLost: Int = 0
+
+        val games = mainPlayer.games.filter { it.deck_one.name == name }
+
+        for (matches in games){
+            if (matches.game_score.first > matches.game_score.second){
+                matchesWon += 1
+            } else {
+                matchesLost += 1
+            }
+            gamesWon += matches.game_score.first
+            gamesLost +=  matches.game_score.second
+        }
+
+        matchWinrate = matchesWon.toFloat() / (matchesWon + matchesLost)
+        gameWinrate = gamesWon.toFloat() / (gamesWon + gamesLost)
+
+        if (matchWinrate == 1f) matchWinrate = 0f
+        if (gameWinrate == 1f) gameWinrate = 0f
+
+        return Stat(matchWinrate * 100, matchesWon, matchesLost, gameWinrate * 100, gamesWon, gamesLost)
+
+    }
 }
 

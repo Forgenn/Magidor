@@ -1,6 +1,7 @@
 package com.example.magidor.Adapters
 
 import android.content.Context
+import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,10 @@ class MatchItemRecyclerViewAdapter(
         holder.tvResult.text = context.getString(R.string.result_match, item.game_score.first, item.game_score.second)
         holder.tvItemDrawOrPlay.text = if (item.player_play) "Play" else "Draw"
 
+
+
+
+
         // Updating the background color according to the odd/even positions in list.
 
         if (item.game_score.first  > item.game_score.second) {
@@ -48,6 +53,11 @@ class MatchItemRecyclerViewAdapter(
                     R.color.purple_500
                 )
             )
+            holder.tvFirstDeck.setTextColor(Color.parseColor("#a39a58"))
+            holder.tvSecondDeck.setTextColor(Color.parseColor("#a39a58"))
+            holder.tvResult.setTextColor(Color.parseColor("#a39a58"))
+            holder.tvItemDrawOrPlay.setTextColor(Color.parseColor("#a39a58"))
+            holder.vs.setTextColor(Color.parseColor("#a39a58"))
         } else {
             holder.cardViewItem.setCardBackgroundColor(
                 ContextCompat.getColor(
@@ -55,6 +65,11 @@ class MatchItemRecyclerViewAdapter(
                     R.color.red
                 )
             )
+            holder.tvFirstDeck.setTextColor(Color.parseColor("#FF6200EE"))
+            holder.tvSecondDeck.setTextColor(Color.parseColor("#FF6200EE"))
+            holder.tvResult.setTextColor(Color.parseColor("#FF6200EE"))
+            holder.tvItemDrawOrPlay.setTextColor(Color.parseColor("#FF6200EE"))
+            holder.vs.setTextColor(Color.parseColor("#FF6200EE"))
         }
     }
 
@@ -74,6 +89,7 @@ class MatchItemRecyclerViewAdapter(
         val tvResult: TextView = binding.tvItemResult
         val cardViewItem = binding.cardViewItem
         val tvItemDrawOrPlay = binding.tvItemPlayOrDraw
+        val vs = binding.tvVs
 
         override fun toString(): String {
             return super.toString()

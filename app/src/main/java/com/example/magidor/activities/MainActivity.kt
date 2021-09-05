@@ -2,6 +2,7 @@ package com.example.magidor.activities
 
 //import com.example.kotlin.fragments.GamesFragment
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.magidor.Adapters.ViewPagerAdapter
@@ -42,7 +43,9 @@ class MainActivity : AppCompatActivity() {
         adapter.addFragment(Players(), "Players")
         adapter.addFragment(Stats(), "Stats")
         viewPager.adapter = adapter
+
         tabs.setupWithViewPager(viewPager)
+        tabs.setTabTextColors(Color.parseColor("#a39a58"), Color.parseColor("#b5aa59"))
     }
 
     fun writePlayerJson() {
@@ -166,9 +169,6 @@ class MainActivity : AppCompatActivity() {
 
         matchWinrate = matchesWon.toFloat() / (matchesWon + matchesLost)
         gameWinrate = gamesWon.toFloat() / (gamesWon + gamesLost)
-
-        if (matchWinrate == 1f) matchWinrate = 0f
-        if (gameWinrate == 1f) gameWinrate = 0f
 
         return Stat(matchWinrate * 100, matchesWon, matchesLost, gameWinrate * 100, gamesWon, gamesLost)
     }

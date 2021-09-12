@@ -116,7 +116,7 @@
                     android:layout_marginEnd="68dp"
                     android:layout_marginRight="68dp"
                     android:baselineAligned="false"
-                    android:text="@string/games_played"
+                    android:text="Games winrate:"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"

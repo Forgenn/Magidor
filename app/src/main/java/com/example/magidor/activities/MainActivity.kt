@@ -196,8 +196,6 @@ class MainActivity : AppCompatActivity() {
         matchWinrate = matchesWon.toFloat() / (matchesWon + matchesLost)
         gameWinrate = gamesWon.toFloat() / (gamesWon + gamesLost)
 
-        if (matchWinrate == 1f) matchWinrate = 0f
-        if (gameWinrate == 1f) gameWinrate = 0f
 
         return Stat(matchWinrate * 100, matchesWon, matchesLost, gameWinrate * 100, gamesWon, gamesLost)
 
